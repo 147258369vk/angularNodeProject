@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserService } from '../shared/user.service';
 
 @Component({
@@ -9,15 +10,27 @@ import { UserService } from '../shared/user.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public userservice:UserService) { }
+  constructor(
+    public userservice:UserService,
+    private router:Router) { }
 
   ngOnInit(): void {
   }
 
+  //blank array
+  userdata:any=[];
+
   logindata(f:NgForm)
   {
     this.userservice.login(f.value).subscribe((res)=>{
-      console.log(res)
+      // console.log(res);
+      this.userdata=res;
+      // console.log(this.userdata.token);
+      console.log(this.userdata.user._id);
+ this.userservice.setToken(this.userdata.token);
+      this.router.navigateByUrl('/dashboard');
+
+
     },(err)=>{
       console.log(err);
 

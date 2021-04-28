@@ -6,23 +6,33 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 
+//import dashboard routing module
+import { DashboardRoutingModule} from './dashboard/dashboard-routing.module';
+
 
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { SidenavComponent } from './dashboard/sidenav/sidenav.component';
+import { ProfileComponent } from './dashboard/profile/profile.component';
+import { ProdiuctComponent } from './dashboard/prodiuct/prodiuct.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    SidenavComponent,
+    ProfileComponent,
+    ProdiuctComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    DashboardRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

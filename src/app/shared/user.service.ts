@@ -31,4 +31,40 @@ export class UserService {
   {
     return this.http.post('http://localhost:3000/auth',existUser);
   }
+
+    //to store the token after login
+
+    setToken(token:string)
+    {
+      localStorage.setItem('usertoken',token);
+    }
+
+    getToken()
+    {
+      return localStorage.getItem('usertoken');
+    }
+
+    deleteToken()
+    {
+      localStorage.removeItem('usertoken');
+    }
+
+
+
+    getPayload()
+    {
+      var token=JSON.stringify(this.getToken());
+      var userpayload=atob(token.split('.')[1]);
+      if(userpayload)
+      {
+        return JSON.parse(userpayload);
+      }
+      else
+      {
+        return null;
+      }
+
+    }
+
+
 }
