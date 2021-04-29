@@ -14,7 +14,8 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(){
 
-    console.log(this.userSer.getToken());
+  //   console.log(this.userSer.getToken()); //to check token stored or not
+  //   console.log(this.userSer.getuserId()); //to check userid stored or not
   }
 
 }

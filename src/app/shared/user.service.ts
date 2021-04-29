@@ -32,6 +32,13 @@ export class UserService {
     return this.http.post('http://localhost:3000/auth',existUser);
   }
 
+
+  display(id:any){
+    return this.http.get('http://localhost:3000/userinfo/'+id);
+  }
+
+
+
     //to store the token after login
 
     setToken(token:string)
@@ -50,6 +57,20 @@ export class UserService {
     }
 
 
+    //to store userid
+    setuserId(id:string)
+    {
+      localStorage.setItem('userid',id);
+    }
+    getuserId()
+    {
+      return localStorage.getItem('userid');
+    }
+    deleteuserId()
+    {
+      localStorage.removeItem('userid');
+    }
+
 
     getPayload()
     {
@@ -64,6 +85,19 @@ export class UserService {
         return null;
       }
 
+    }
+
+    isloggedIn()
+    {
+      var userpayload=this.getPayload();
+      if(userpayload)
+      {
+        return userpayload.exp>Date.now()/1000;
+      }
+      else
+      {
+        return null;
+      }
     }
 
 

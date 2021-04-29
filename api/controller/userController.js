@@ -199,3 +199,24 @@ module.exports.userProfile=(req,res,next)=>{
         })
     })
 }
+
+
+//selected User
+
+module.exports.selectedUser=(req,res)=>{
+  adminData.findById({_id:req.params.id}).then((docs)=>{
+    return res.status(200).json({
+      success:true,
+      message:'user found',
+      data:docs
+    })
+  })
+  .catch((err)=>{
+   return res.status(400).json({
+     success:false,
+     message:'User not found',
+     error:err.message
+
+   })
+  })
+}

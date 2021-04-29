@@ -19,6 +19,7 @@ approute.post('/reg',myctrl.registerData);
 approute.post('/admin',myctrl.addAdmin);
 approute.post('/auth',myctrl.authenticate);
 approute.get('/profile',jwt.verifyJwtToken,myctrl.userProfile);
+approute.get('/userinfo/:id',myctrl.selectedUser);
 
 module.exports = approute;
 
