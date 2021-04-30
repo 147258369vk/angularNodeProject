@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User,loginUser } from './user.model';
+import { Product } from './product.model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,13 @@ export class UserService {
   public existingUser:loginUser={
     email:'',
     password:''
+  }
+
+  public newProduct:Product={
+    pname:'',
+    price:'',
+    quantity:'',
+    user:this.getuserId()
   }
 
   constructor(private http:HttpClient) { }
@@ -36,7 +44,25 @@ export class UserService {
   display(id:any){
     return this.http.get('http://localhost:3000/userinfo/'+id);
   }
+  updateUser(id:any,updatedData:User)
+  {
+    return this.http.put('http://localhost:3000/update/'+id,updatedData);
+  }
 
+
+  //to add product
+
+  addProduct(product:Product)
+  {
+    return this.http.post('http://localhost:3000/addproduct',product);
+  }
+
+  //displayproduct by user
+
+  displayProduct(id:any)
+  {
+    return this.http.get('http://localhost:3000/displayproduct/'+id);
+  }
 
 
     //to store the token after login

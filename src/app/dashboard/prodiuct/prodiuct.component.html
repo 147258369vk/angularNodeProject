@@ -1,1 +1,63 @@
-<p>prodiuct works!</p>
+
+<div class="container">
+  <div class="alert alert-info">Add products</div>
+
+  <form #productform="ngForm" (ngSubmit)="onAdd(productform)">
+    <input type="hidden"
+    name="user"
+    #user="ngModel"
+    [(ngModel)]="userservice.newProduct.user">
+
+    Enter product name:
+    <input
+    type="text"
+    class="form-control"
+    name="pname"
+    #pname="ngModel"
+    [(ngModel)]=userservice.newProduct.pname
+    >
+    <br><br>
+    Enter price:
+    <input
+    type="text"
+    class="form-control"
+    name="price"
+    #price="ngModel"
+    [(ngModel)]="userservice.newProduct.price"
+    >
+    <br><br>
+    Enter quantity:
+    <input
+    type="text"
+    class="form-control"
+    name="quantity"
+    #quantity="ngModel"
+    [(ngModel)]="userservice.newProduct.quantity"
+    >
+
+    <br><br>
+
+    <input
+    type="submit"
+    class="btn btn-primary">
+
+  </form>
+
+</div>
+
+<br><br>
+<div class="container">
+  <table class="table">
+    <tr>
+      <th>Productname</th>
+      <th>Price</th>
+      <th>Quantity</th>
+    </tr>
+
+    <tr *ngFor="let pro of product">
+      <td>{{pro.pname}}</td>
+      <td>{{pro.price}}</td>
+      <td>{{pro.quantity}}</td>
+    </tr>
+  </table>
+</div>

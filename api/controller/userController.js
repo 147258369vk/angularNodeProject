@@ -2,6 +2,7 @@ require('../model/userModel');
 require('../model/registerModel');
 require('../model/adminModel');
 require('../config/passportConfig');
+require('../model/productModel');
 const mongoose = require('mongoose');
 const passport = require('passport');
 
@@ -12,6 +13,8 @@ var UserData=mongoose.model('user');
 var regData=mongoose.model('register');
 
 var adminData=mongoose.model('admin');
+
+var newProduct=mongoose.model('product');
 
 
 module.exports.addnew=(req,res)=>{
@@ -204,7 +207,7 @@ module.exports.userProfile=(req,res,next)=>{
 //selected User
 
 module.exports.selectedUser=(req,res)=>{
-  adminData.findById({_id:req.params.id}).then((docs)=>{
+  adminData.findById({_id:req.params.x}).then((docs)=>{
     return res.status(200).json({
       success:true,
       message:'user found',
@@ -220,3 +223,51 @@ module.exports.selectedUser=(req,res)=>{
    })
   })
 }
+
+//add product
+
+module.exports.addnewproduct=(req,res)=>{
+  var myproduct=new newProduct({
+    pname:req.body.pname,
+    price:req.body.price,
+    quantity:req.body.quantity,
+    user:req.body.user
+  });
+
+    myproduct.save().then((docs)=>{
+      return res.status(200).json({
+        success:true,
+        message:"New Product added",
+        data:docs
+      })
+    })
+    .catch((err)=>{
+      return res.status(400).json({
+        success:false,
+        message:'Error in adding product',
+        error:err.message
+      })
+    })
+}
+
+//display product by user
+
+  module.exports.displayproduct=(req,res)=>{
+    return newProduct.find({user:req.params.userid}).populate('user').exec().then((docs)=>{
+      res.status(200).json({
+        success:true,
+        message:'list of products added',
+        data:docs
+      })
+    })
+    .catch((err)=>{
+      res.status(404).json({
+        success:false,
+        message:'No product found',
+        error:err.message
+      })
+    })
+  }
+
+
+

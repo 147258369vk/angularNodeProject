@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../shared/auth.guard';
 import { DashboardComponent } from './dashboard.component';
+import { ProdiuctComponent } from './prodiuct/prodiuct.component';
 import { ProfileComponent } from './profile/profile.component';
 
 const dashboardrouting:Routes=[
@@ -10,12 +11,16 @@ const dashboardrouting:Routes=[
     path:'dashboard',
     component:DashboardComponent,
     canActivate:[AuthGuard],
-    children:[{
-
+    children:[
+      {
         path:'profile',
         component:ProfileComponent
-
-    }]
+      },
+      {
+        path:'product',
+        component:ProdiuctComponent
+      }
+    ]
   },
 ]
 

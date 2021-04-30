@@ -19,7 +19,12 @@ approute.post('/reg',myctrl.registerData);
 approute.post('/admin',myctrl.addAdmin);
 approute.post('/auth',myctrl.authenticate);
 approute.get('/profile',jwt.verifyJwtToken,myctrl.userProfile);
-approute.get('/userinfo/:id',myctrl.selectedUser);
+approute.get('/userinfo/:x',myctrl.selectedUser);
+
+
+approute.post('/addproduct',myctrl.addnewproduct);
+approute.get('/displayproduct/:userid',myctrl.displayproduct);
+
 
 module.exports = approute;
 
