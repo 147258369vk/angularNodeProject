@@ -16,6 +16,11 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { SidenavComponent } from './dashboard/sidenav/sidenav.component';
 import { ProfileComponent } from './dashboard/profile/profile.component';
 import { ProdiuctComponent } from './dashboard/prodiuct/prodiuct.component';
+import { UploadimageComponent } from './dashboard/uploadimage/uploadimage.component';
+
+// import ng2-file-upload module
+
+import { FileUploadModule } from 'ng2-file-upload';
 
 @NgModule({
   declarations: [
@@ -25,14 +30,16 @@ import { ProdiuctComponent } from './dashboard/prodiuct/prodiuct.component';
     DashboardComponent,
     SidenavComponent,
     ProfileComponent,
-    ProdiuctComponent
+    ProdiuctComponent,
+    UploadimageComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    DashboardRoutingModule
+    DashboardRoutingModule,
+    FileUploadModule
   ],
   providers: [],
   bootstrap: [AppComponent]

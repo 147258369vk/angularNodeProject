@@ -24,6 +24,8 @@ approute.get('/userinfo/:x',myctrl.selectedUser);
 
 approute.post('/addproduct',myctrl.addnewproduct);
 approute.get('/displayproduct/:userid',myctrl.displayproduct);
+approute.get('/file',myctrl.displayfile);
+approute.post('/imageupload/:productid',myctrl.uploadImage);
 
 
 module.exports = approute;

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/shared/user.service';
 
 @Component({
@@ -14,7 +15,8 @@ export class ProdiuctComponent implements OnInit {
 product:any=[];
 
   constructor(
-    public userservice:UserService
+    public userservice:UserService,
+    public router:Router
   ) { }
 
 
@@ -24,6 +26,11 @@ product:any=[];
     this.userservice.displayProduct(this.userservice.getuserId()).subscribe((res)=>{
       this.productresponse=res;
       this.product=this.productresponse.data;
+
+
+
+
+
 
     },
     (err)=>{
@@ -38,6 +45,15 @@ product:any=[];
     },(err)=>{
       console.log(err);
     })
+  }
+
+  getid(id:any)
+  {
+
+    localStorage.setItem('productid',id);
+    console.log(localStorage.getItem('productid'));
+    this.router.navigateByUrl('/dashboard/upload');
+
   }
 
 }

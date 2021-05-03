@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="alert alert-info mt-3">Product Image</div>
+  <br><br>
+  <form enctype="multipart/form-data">
+    Upload Image<input type="file" name="photo" ng2FileSelect [uploader]="uploader" class="form-control">
+    <br><br>
+    <input type="submit" value="upload" (click)="uploader.uploadAll()"
+    [disabled]="!uploader.getNotUploadedItems().length">
+
+  </form>
+</div>

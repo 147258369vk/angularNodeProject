@@ -5,6 +5,7 @@ import { AuthGuard } from '../shared/auth.guard';
 import { DashboardComponent } from './dashboard.component';
 import { ProdiuctComponent } from './prodiuct/prodiuct.component';
 import { ProfileComponent } from './profile/profile.component';
+import { UploadimageComponent } from './uploadimage/uploadimage.component';
 
 const dashboardrouting:Routes=[
   {
@@ -19,6 +20,10 @@ const dashboardrouting:Routes=[
       {
         path:'product',
         component:ProdiuctComponent
+      },
+      {
+        path:'upload',
+        component:UploadimageComponent
       }
     ]
   },

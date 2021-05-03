@@ -18,7 +18,9 @@ var productSchema = mongoose.Schema({
   user:{
       type:mongoose.Schema.Types.ObjectId,
       ref:'admin'
-  }
+  },
+
+
 })
 
 mongoose.model('product',productSchema);

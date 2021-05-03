@@ -3,8 +3,11 @@ require('../model/registerModel');
 require('../model/adminModel');
 require('../config/passportConfig');
 require('../model/productModel');
+require('../model/productImage');
 const mongoose = require('mongoose');
 const passport = require('passport');
+
+const multer = require('multer');
 
 const jwt = require('jsonwebtoken');
 const _ = require('lodash');
@@ -15,6 +18,7 @@ var regData=mongoose.model('register');
 var adminData=mongoose.model('admin');
 
 var newProduct=mongoose.model('product');
+var productImages= mongoose.model('productimage');
 
 
 module.exports.addnew=(req,res)=>{
@@ -269,5 +273,57 @@ module.exports.addnewproduct=(req,res)=>{
     })
   }
 
+  module.exports.displayfile=(req,res)=>{
+    res.sendFile(__dirname+"/file.html");
+  }
 
 
+  //for uploading images
+
+  var storage=multer.diskStorage({
+    destination:(req,file,cb)=>{
+      cb(null,'./uploads');
+    },
+    filename:(req,file,cb)=>{
+      cb(null,file.originalname);
+    }
+  })
+
+  var upload = multer({storage:storage}).single('photo');
+
+
+  module.exports.uploadImage = (req,res)=>{
+    upload(req,res,(err)=>{
+      if(err)
+      console.log("Error in uploading file" +err);
+      else{
+        console.log("File uploaded successfully");
+
+          var myprodimg=new productImages({
+            product:req.params.productid,
+            imagepath:req.file.path
+
+          });
+
+          myprodimg.save().then((docs)=>{
+            return res.status(200).json({
+              success:true,
+              message:'Uploaded successfully',
+              data:docs
+            })
+          }).catch((err)=>{
+            return res.status(404).json({
+              success:false,
+              message:'Error in Uploading file',
+              error:err.message
+            })
+          })
+
+
+
+        console.log(req.file);
+
+      }
+
+    })
+  }
