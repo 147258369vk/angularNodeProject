@@ -1,6 +1,7 @@
 import { Route } from '@angular/compiler/src/core';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LogoutComponent } from '../logout/logout.component';
 import { AuthGuard } from '../shared/auth.guard';
 import { DashboardComponent } from './dashboard.component';
 import { ProdiuctComponent } from './prodiuct/prodiuct.component';
@@ -24,7 +25,8 @@ const dashboardrouting:Routes=[
       {
         path:'upload',
         component:UploadimageComponent
-      }
+      },
+     
     ]
   },
 ]

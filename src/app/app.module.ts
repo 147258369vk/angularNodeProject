@@ -21,6 +21,7 @@ import { UploadimageComponent } from './dashboard/uploadimage/uploadimage.compon
 // import ng2-file-upload module
 
 import { FileUploadModule } from 'ng2-file-upload';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { FileUploadModule } from 'ng2-file-upload';
     ProfileComponent,
     ProdiuctComponent,
     UploadimageComponent,
+    LogoutComponent,
   ],
   imports: [
     BrowserModule,

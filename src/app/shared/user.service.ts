@@ -100,16 +100,31 @@ export class UserService {
 
     getPayload()
     {
-      var token=JSON.stringify(this.getToken());
-      var userpayload=atob(token.split('.')[1]);
-      if(userpayload)
+      // var userpayload;
+      // var token=JSON.stringify(this.getToken());
+      // if(token)
+      // {
+      // userpayload=atob(token.split('.')[1]);
+
+      //   return JSON.parse(userpayload);
+      // }
+      // else
+      // {
+      //   return null;
+      // }
+
+      var token = this.getToken();
+      if(token)
       {
+        var userpayload=atob(token.split('.')[1]);
         return JSON.parse(userpayload);
       }
       else
       {
         return null;
       }
+
+
 
     }
 
@@ -125,6 +140,8 @@ export class UserService {
         return null;
       }
     }
+
+
 
 
 }
